@@ -149,10 +149,10 @@ class HomeScreen extends StatelessWidget {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       crossAxisCount:
-                          MediaQuery.of(context).size.width > 600 ? 2 : 1,
                           MediaQuery.of(context).size.width > 600 ? 4 : 2,
-                      crossAxisSpacing: 24,
-                      mainAxisSpacing: 48,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                      childAspectRatio: 0.7,
                       children: const [
                         ProductCard(
                           title: 'Placeholder Product 1',
