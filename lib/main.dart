@@ -45,10 +45,6 @@ class HomeScreen extends StatelessWidget {
     Navigator.pushNamed(context, '/product');
   }
 
-  void placeholderCallbackForButtons() {
-    // This is the event handler for buttons that don't work yet
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,7 +105,9 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 32),
                         ElevatedButton(
-                          onPressed: placeholderCallbackForButtons,
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/collections');
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF4d2963),
                             foregroundColor: Colors.white,
@@ -153,26 +151,33 @@ class HomeScreen extends StatelessWidget {
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16,
                       childAspectRatio: 0.7,
-                      children: const [
-                        ProductCard(
-                          title: 'Placeholder Product 1',
-                          price: '£10.00',
-                          imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            // This is a temporary navigation for the first product
+                            // We can make this dynamic later
+                            Navigator.pushNamed(context, '/product');
+                          },
+                          child: ProductCard(
+                            title: 'Placeholder Product 1',
+                            price: '£10.00',
+                            imageUrl:
+                                'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                          ),
                         ),
-                        ProductCard(
+                        const ProductCard(
                           title: 'Placeholder Product 2',
                           price: '£15.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
                         ),
-                        ProductCard(
+                        const ProductCard(
                           title: 'Placeholder Product 3',
                           price: '£20.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
                         ),
-                        ProductCard(
+                        const ProductCard(
                           title: 'Placeholder Product 4',
                           price: '£25.00',
                           imageUrl:

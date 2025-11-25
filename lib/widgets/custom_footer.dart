@@ -18,7 +18,10 @@ class CustomFooter extends StatelessWidget {
             },
             child: const Text(
               'About Us',
-              style: TextStyle(color: Colors.black, fontSize: 16),
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  decoration: TextDecoration.underline),
             ),
           ),
           const SizedBox(height: 16),
