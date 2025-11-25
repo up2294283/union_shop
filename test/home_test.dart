@@ -10,15 +10,12 @@ void main() {
 
       // Check that basic UI elements are present
       expect(
-        find.text('PLACEHOLDER HEADER TEXT - STUDENTS TO UPDATE!'),
         find.text('FREE UK DELIVERY ON ORDERS OVER £50'),
         findsOneWidget,
       );
-      expect(find.text('Placeholder Hero Title'), findsOneWidget);
-      expect(find.text('PLACEHOLDER PRODUCTS SECTION'), findsOneWidget);
-      expect(find.text('PRODUCTS SECTION'), findsOneWidget);
+      expect(find.text('Official University Merchandise'), findsOneWidget);
+      expect(find.text('Featured Products'), findsOneWidget);
       expect(find.text('BROWSE PRODUCTS'), findsOneWidget);
-      expect(find.text('VIEW ALL PRODUCTS'), findsOneWidget);
     });
 
     testWidgets('should display product cards', (tester) async {
@@ -44,6 +41,7 @@ void main() {
 
       // Check that header icons are present
       expect(find.byIcon(Icons.search), findsOneWidget);
+      expect(find.byIcon(Icons.person_outline), findsOneWidget);
       expect(find.byIcon(Icons.shopping_bag_outlined), findsOneWidget);
       expect(find.byIcon(Icons.menu), findsOneWidget);
     });
@@ -53,12 +51,8 @@ void main() {
       await tester.pump();
 
       // Check that footer is present
-      expect(find.text('Placeholder Footer'), findsOneWidget);
-      expect(
-        find.text('Students should customise this footer section'),
-        findsOneWidget,
-      );
       expect(find.text('© 2024, Union Shop'), findsOneWidget);
+      expect(find.text('About Us'), findsOneWidget);
     });
   });
 }
