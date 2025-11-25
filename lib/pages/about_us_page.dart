@@ -7,37 +7,67 @@ class AboutUsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: CustomAppBar(),
+    return Scaffold(
+      appBar: const CustomAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(24.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'About Us',
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 24),
-                  Text(
-                    'Welcome to the Union Shop, your one-stop destination for all official university merchandise and student essentials. Our mission is to provide high-quality, affordable products that help you show your university pride and make your student life easier.',
+                  const SizedBox(height: 24),
+                  const Text(
+                    'Welcome to the Union Shop!',
                     style: TextStyle(fontSize: 16, height: 1.5),
                   ),
-                  SizedBox(height: 16),
-                  Text(
-                    'From branded hoodies and t-shirts to stationery and graduation gifts, every purchase you make directly supports the Student Union and its activities, helping us to enhance the student experience for everyone.',
+                  const SizedBox(height: 16),
+                  const Text(
+                    'We’re dedicated to giving you the very best University branded products, with a range of clothing and merchandise available to shop all year round! We even offer an exclusive personalisation service!',
+                    style: TextStyle(fontSize: 16, height: 1.5),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'All online purchases are available for delivery or instore collection!',
+                    style: TextStyle(fontSize: 16, height: 1.5),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments, please don’t hesitate to contact us at hello@upsu.net.',
+                    style: TextStyle(fontSize: 16, height: 1.5),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Happy shopping!',
+                    style: TextStyle(fontSize: 16, height: 1.5),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'The Union Shop & Reception Team',
+                    style: TextStyle(fontSize: 16, height: 1.5),
+                  ),
+                  const SizedBox(height: 32),
+                  const Text(
+                    'Opening Hours',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Monday - Friday: 9am - 5pm\nSaturday - Sunday: Closed',
                     style: TextStyle(fontSize: 16, height: 1.5),
                   ),
                 ],
               ),
             ),
-            CustomFooter(),
+            const CustomFooter(),
           ],
         ),
       ),
