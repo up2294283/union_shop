@@ -15,7 +15,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: 140, // Increase height to fit the navbar
       color: Colors.white,
       child: Column(
         children: [
@@ -96,11 +96,45 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
           ),
+          // Bottom navigation bar
+          Container(
+            height: 40,
+            decoration: const BoxDecoration(
+              border: Border(top: BorderSide(color: Colors.black12, width: 1)),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _NavBarItem(text: 'HOME', onTap: () => navigateToHome(context)),
+                _NavBarItem(text: 'COLLECTIONS', onTap: () => Navigator.pushNamed(context, '/collections')),
+                _NavBarItem(text: 'GIFTS', onTap: placeholderCallbackForButtons),
+                _NavBarItem(text: 'SALE', onTap: () => Navigator.pushNamed(context, '/sale')),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(100);
+  Size get preferredSize => const Size.fromHeight(140); // Update preferred size
+}
+
+class _NavBarItem extends StatelessWidget {
+  final String text;
+  final VoidCallback onTap;
+
+  const _NavBarItem({required this.text, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        child: Text(text, style: const TextStyle(letterSpacing: 1.5)),
+      ),
+    );
+  }
 }
