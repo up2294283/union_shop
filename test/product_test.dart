@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:union_shop/pages/about_us_page.dart';
+import 'package:union_shop/main.dart';
+import 'package:union_shop/pages/collection_detail_page.dart';
+import 'package:union_shop/pages/collections_page.dart';
 import 'package:union_shop/pages/product_page.dart';
 
 void main() {
   group('Product Page Tests', () {
     Widget createTestWidget() {
-      return const MaterialApp(home: ProductPage());
+      return MaterialApp(
+        initialRoute: '/product',
+        routes: {
+          '/': (context) => const HomeScreen(),
+          '/product': (context) => const ProductPage(),
+          '/collections': (context) => const CollectionsPage(),
+          '/about': (context) => const AboutUsPage(),
+          '/collection-detail': (context) => const CollectionDetailPage(),
+        },
+      );
     }
 
     testWidgets('should display product page with basic elements', (
@@ -30,6 +43,7 @@ void main() {
 
       // Check that header icons are present
       expect(find.byIcon(Icons.search), findsOneWidget);
+      expect(find.byIcon(Icons.person_outline), findsOneWidget);
       expect(find.byIcon(Icons.shopping_bag_outlined), findsOneWidget);
       expect(find.byIcon(Icons.menu), findsOneWidget);
     });
@@ -40,7 +54,7 @@ void main() {
 
       // Check that footer is present
       expect(find.text('© 2024, Union Shop'), findsOneWidget);
-      expect(find.text('INFORMATION'), findsOneWidget);
+      expect(find.text('About Us'), findsOneWidget);
     });
   });
 }
