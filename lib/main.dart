@@ -1,16 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:union_shop/pages/product_page.dart';
-import 'package:union_shop/pages/about_us_page.dart';
-import 'package:union_shop/pages/collections_page.dart';
-import 'package:union_shop/pages/collection_detail_page.dart';
-import 'package:union_shop/pages/sale_page.dart';
-import 'package:union_shop/widgets/custom_app_bar.dart';
-import 'package:union_shop/widgets/custom_footer.dart';
-import 'package:union_shop/widgets/product_card.dart';
+import 'product_page.dart';
 
-void main() {
-  runApp(const UnionShopApp());
-}
+void main() => runApp(const UnionShopApp());
 
 class UnionShopApp extends StatelessWidget {
   const UnionShopApp({super.key});
@@ -19,179 +10,76 @@ class UnionShopApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Union Shop',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF4d2963)),
-      ),
-      // By default, the app starts at the '/' route, which is the HomeScreen
-      initialRoute: '/',
-      // When navigating to '/product', build and return the ProductPage
-      routes: {
-        '/': (context) => const HomeScreen(),
-        '/product': (context) => const ProductPage(),
-        '/about': (context) => const AboutUsPage(),
-        '/collections': (context) => const CollectionsPage(),
-        '/collection-detail': (context) => const CollectionDetailPage(),
-        '/sale': (context) => const SalePage(),
-      },
+      theme: ThemeData(useMaterial3: true),
+      home: const HomePage(),
     );
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  void navigateToProduct(BuildContext context) {
-    Navigator.pushNamed(context, '/product');
-  }
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Hero Section
-            SizedBox(
-              height: 400,
-              width: double.infinity,
-              child: Stack(
-                children: [
-                  // Background image
-                  Positioned.fill(
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(
-                            'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.black.withValues(alpha: 0.7),
-                        ),
-                      ),
-                    ),
-                  ),
-                  // Content overlay
-                  Positioned(
-                    left: 24,
-                    right: 24,
-                    top: 80,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Official University Merchandise',
-                          style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            height: 1.2,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        const Text(
-                          "Find everything you need from hoodies to graduation gifts.",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            height: 1.5,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 32),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/collections');
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF4d2963),
-                            foregroundColor: Colors.white,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.zero,
-                            ),
-                          ),
-                          child: const Text(
-                            'BROWSE PRODUCTS',
-                            style: TextStyle(fontSize: 14, letterSpacing: 1),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+      appBar: AppBar(title: const Text('Union Shop')),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          const Text('Welcome to the Union Shop!',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
 
-            // Products Section
-            Container(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(40.0),
-                child: Column(
-                  children: [
-                    const Text(
-                      'Featured Products',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        letterSpacing: 1,
-                      ),
-                    ),
-                    const SizedBox(height: 48),
-                    GridView.count(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      crossAxisCount:
-                          MediaQuery.of(context).size.width > 600 ? 4 : 2,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
-                      childAspectRatio: 0.7,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            // This is a temporary navigation for the first product
-                            // We can make this dynamic later
-                            Navigator.pushNamed(context, '/product');
-                          },
-                          child: ProductCard(
-                            title: 'Placeholder Product 1',
-                            price: '£10.00',
-                            imageUrl:
-                                'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                          ),
-                        ),
-                        const ProductCard(
-                          title: 'Placeholder Product 2',
-                          price: '£15.00',
-                          imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                        ),
-                        const ProductCard(
-                          title: 'Placeholder Product 3',
-                          price: '£20.00',
-                          imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                        ),
-                        const ProductCard(
-                          title: 'Placeholder Product 4',
-                          price: '£25.00',
-                          imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
+          const SizedBox(height: 20),
 
-            const CustomFooter(),
-          ],
+          Container(
+            height: 160,
+            decoration: BoxDecoration(
+              color: Colors.blue[100],
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: const Center(child: Text("Banner / Hero Image Placeholder")),
+          ),
+
+          const SizedBox(height: 20),
+
+          const Text('Featured Collections',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+
+          const SizedBox(height: 10),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _collectionCard(context, 'Clothing'),
+              _collectionCard(context, 'Accessories'),
+            ],
+          ),
+
+          const SizedBox(height: 30),
+
+          const Center(child: Text("© 2025 Union Shop - Dummy Footer")),
+        ],
+      ),
+    );
+  }
+
+  Widget _collectionCard(BuildContext context, String title) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const ProductPage()),
+        );
+      },
+      child: Container(
+        width: 150,
+        height: 120,
+        decoration: BoxDecoration(
+          color: Colors.grey[300],
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Center(
+          child: Text(title, style: const TextStyle(fontSize: 16)),
         ),
       ),
     );
