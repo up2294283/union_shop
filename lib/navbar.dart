@@ -1,0 +1,70 @@
+import 'package:flutter/material.dart';
+import 'about_page.dart';
+import 'sale_page.dart';
+import 'login_page.dart';
+import 'collections_page.dart';
+
+class NavBar extends StatelessWidget implements PreferredSizeWidget {
+  const NavBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final isDesktop = MediaQuery.of(context).size.width > 600;
+
+    return AppBar(
+      title: const Text("Union Shop"),
+
+      // MOBILE → Hamburger menu
+      actions: isDesktop ? _buildDesktopLinks(context) : null,
+
+      automaticallyImplyLeading: !isDesktop,
+
+      // drawer only on mobile
+      bottom: isDesktop ? null : PreferredSize(
+        preferredSize: const Size.fromHeight(0),
+        child: Container(),
+      ),
+    );
+  }
+
+  // Desktop links
+  List<Widget> _buildDesktopLinks(BuildContext context) {
+    return [
+      TextButton(
+        onPressed: () {},
+        child: const Text("Home", style: TextStyle(color: Colors.white)),
+      ),
+      TextButton(
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const CollectionsPage()));
+        },
+        child: const Text("Collections", style: TextStyle(color: Colors.white)),
+      ),
+      TextButton(
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (_) => const SalePage()));
+        },
+        child: const Text("Sale", style: TextStyle(color: Colors.white)),
+      ),
+      TextButton(
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (_) => const AboutPage()));
+        },
+        child: const Text("About", style: TextStyle(color: Colors.white)),
+      ),
+      TextButton(
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (_) => const LoginPage()));
+        },
+        child: const Text("Login", style: TextStyle(color: Colors.white)),
+      ),
+    ];
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
