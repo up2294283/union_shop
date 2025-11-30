@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:union_shop/models/product.dart';
 import 'package:union_shop/product_date.dart';
 import 'package:union_shop/widgets/custom_app_bar.dart';
 import 'package:union_shop/widgets/custom_footer.dart';

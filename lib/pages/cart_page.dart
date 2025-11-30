@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:union_shop/cart_service.dart';
 
 class CartPage extends StatefulWidget {
@@ -9,25 +10,20 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  void _cartUpdate() {
-    setState(() {});
-  }
-
   @override
   void initState() {
     super.initState();
-    CartService.onCartUpdated = _cartUpdate;
   }
 
   @override
   void dispose() {
-    CartService.onCartUpdated = null;
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final cartItems = CartService.items;
+    final cartService = context.watch<CartService>();
+    final cartItems = cartService.items;
 
     return Scaffold(
       appBar: AppBar(
@@ -54,7 +50,7 @@ class _CartPageState extends State<CartPage> {
                       IconButton(
                         icon: const Icon(Icons.remove_shopping_cart),
                         onPressed: () {
-                          CartService.remove(product.id);
+                          context.read<CartService>().remove(product.id);
                         },
                       ),
                     ],
@@ -69,7 +65,7 @@ class _CartPageState extends State<CartPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Total: £${CartService.total.toStringAsFixed(2)}',
+                  'Total: £${cartService.total.toStringAsFixed(2)}',
                   style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 ElevatedButton(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/models/product.dart';
 import 'package:union_shop/pages/product_page.dart';
+import 'package:provider/provider.dart';
+import 'package:union_shop/cart_service.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -51,9 +53,26 @@ class ProductCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 4),
-                Text(
-                  '£${product.price.toStringAsFixed(2)}',
-                  style: const TextStyle(fontSize: 13, color: Colors.grey),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '£${product.price.toStringAsFixed(2)}',
+                      style: const TextStyle(fontSize: 13, color: Colors.grey),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.add_shopping_cart),
+                      onPressed: () {
+                        Provider.of<CartService>(context, listen: false).add(product, 1);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('${product.name} added to cart!'),
+                            duration: const Duration(seconds: 1),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),

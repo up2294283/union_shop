@@ -3,6 +3,9 @@ import 'package:union_shop/pages/cart_page.dart';
 import 'package:union_shop/pages/collections_page.dart';
 import 'package:union_shop/pages/sale_page.dart';
 import 'package:union_shop/pages/profile_page.dart';
+import 'package:union_shop/pages/home_page.dart';
+import 'package:provider/provider.dart';
+import 'package:union_shop/cart_service.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key, this.onSearchQueryChanged});
@@ -38,8 +41,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
   }
 
   void navigateToHome(BuildContext context) {
-    // Use pushNamedAndRemoveUntil to clear the navigation stack
-    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => const HomePage()),
+      (Route<dynamic> route) => false,
+    );
   }
 
   @override
@@ -146,15 +152,47 @@ class _CustomAppBarState extends State<CustomAppBar> {
                               );
                             },
                           ),
-                          IconButton(
-                            icon: const Icon(Icons.shopping_bag_outlined,
-                                size: 18, color: Colors.grey),
-                            padding: const EdgeInsets.all(8),
-                            constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (_) => const CartPage()),
+                          Consumer<CartService>(
+                            builder: (context, cart, child) {
+                              return Stack(
+                                children: [
+                                  IconButton(
+                                    icon: const Icon(Icons.shopping_bag_outlined,
+                                        size: 18, color: Colors.grey),
+                                    padding: const EdgeInsets.all(8),
+                                    constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (_) => const CartPage()),
+                                      );
+                                    },
+                                  ),
+                                  if (cart.itemCount > 0)
+                                    Positioned(
+                                      right: 0,
+                                      top: 0,
+                                      child: Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration: BoxDecoration(
+                                          color: Colors.red,
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        constraints: const BoxConstraints(
+                                          minWidth: 16,
+                                          minHeight: 16,
+                                        ),
+                                        child: Text(
+                                          '${cart.itemCount}',
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 10,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                ],
                               );
                             },
                           ),

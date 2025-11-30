@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'about_page.dart';
+import 'pages/about_us_page.dart';
 import 'pages/cart_page.dart';
-import 'sale_page.dart';
+import 'pages/sale_page.dart';
 import 'login_page.dart';
 import 'pages/collections_page.dart';
+import 'pages/home_page.dart';
 
 class NavBar extends StatelessWidget implements PreferredSizeWidget {
   const NavBar({super.key});
@@ -46,7 +47,10 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
   List<Widget> _buildDesktopLinks(BuildContext context) {
     return [
       TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (_) => const HomePage()));
+        },
         child: const Text("Home", style: TextStyle(color: Colors.white)),
       ),
       TextButton(
@@ -66,7 +70,7 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
       TextButton(
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (_) => const AboutPage()));
+              context, MaterialPageRoute(builder: (_) => const AboutUsPage()));
         },
         child: const Text("About", style: TextStyle(color: Colors.white)),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/pages/about_us_page.dart';
 
 class CustomFooter extends StatelessWidget {
   const CustomFooter({super.key});
@@ -14,7 +15,10 @@ class CustomFooter extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, '/about');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AboutUsPage()),
+              );
             },
             child: const Text(
               'About Us',

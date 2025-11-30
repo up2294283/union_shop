@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/custom_app_bar.dart';
+import 'package:provider/provider.dart';
 import '../models/product.dart';
 import '../cart_service.dart';
 
@@ -58,7 +59,7 @@ class _ProductPageState extends State<ProductPage> {
 
           ElevatedButton(
             onPressed: () {
-              CartService.add(widget.product, quantity);
+              context.read<CartService>().add(widget.product, quantity);
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Added to cart')),
               );
