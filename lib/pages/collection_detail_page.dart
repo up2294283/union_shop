@@ -4,13 +4,12 @@ import 'package:union_shop/widgets/custom_footer.dart';
 import 'package:union_shop/widgets/product_card.dart';
 
 class CollectionDetailPage extends StatelessWidget {
-  const CollectionDetailPage({super.key});
+  final String collectionName;
+
+  const CollectionDetailPage({super.key, required this.collectionName});
 
   @override
   Widget build(BuildContext context) {
-    // In a real app, you would pass the collection name here.
-    const collectionName = "Clothing";
-
     return Scaffold(
       appBar: const CustomAppBar(),
       body: SingleChildScrollView(

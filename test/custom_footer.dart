@@ -1,22 +1,3 @@
-import 'package:flutter/material.dart';
-
-class CustomFooter extends StatelessWidget {
-  const CustomFooter({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      color: Colors.grey[50],
-      padding: const EdgeInsets.all(24),
-      child: const Text(
-        '© 2024, Union Shop', // Updated text
-        style: TextStyle(
-          color: Colors.grey,
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-    );
-  }
-}
+// This file should contain tests for the CustomFooter widget.
+// The original content of this file was a widget definition, which is incorrect.
+// The content has been cleared to avoid confusion.

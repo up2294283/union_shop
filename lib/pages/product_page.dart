@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/product.dart';
-import 'cart_page.dart';
-import '../services/cart_service.dart';
+import '../cart_service.dart';
 
 class ProductPage extends StatefulWidget {
   final Product product;
@@ -59,8 +58,9 @@ class _ProductPageState extends State<ProductPage> {
           ElevatedButton(
             onPressed: () {
               CartService.add(widget.product, quantity);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => const CartPage()));
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Added to cart')),
+              );
             },
             child: const Text("Add to Cart"),
           )

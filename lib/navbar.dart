@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'about_page.dart';
 import 'sale_page.dart';
 import 'login_page.dart';
-import 'collections_page.dart';
+import 'pages/collections_page.dart';
 
 class NavBar extends StatelessWidget implements PreferredSizeWidget {
   const NavBar({super.key});
