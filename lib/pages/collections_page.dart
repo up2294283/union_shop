@@ -1,36 +1,40 @@
 import 'package:flutter/material.dart';
+import '../data/product_data.dart';
+import 'product_page.dart';
 
-class CollectionsPage extends StatelessWidget {
-  const CollectionsPage({super.key});
+class CollectionPage extends StatelessWidget {
+  final String collectionName;
+
+  const CollectionPage({super.key, required this.collectionName});
 
   @override
   Widget build(BuildContext context) {
+    final collectionProducts = products
+        .where((p) => p.collection == collectionName)
+        .toList();
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Collections')),
-      body: GridView.count(
-        crossAxisCount: 2,
-        childAspectRatio: 1,
-        padding: const EdgeInsets.all(16),
-        children: const [
-          _CollectionCard("Hoodies"),
-          _CollectionCard("T-Shirts"),
-          _CollectionCard("Mugs"),
-          _CollectionCard("Bags"),
-        ],
+      appBar: AppBar(title: Text(collectionName)),
+      body: ListView.builder(
+        itemCount: collectionProducts.length,
+        itemBuilder: (context, index) {
+          final item = collectionProducts[index];
+
+          return ListTile(
+            leading: Image.asset(item.image, width: 60),
+            title: Text(item.name),
+            subtitle: Text("£${item.price}"),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => ProductPage(product: item),
+                ),
+              );
+            },
+          );
+        },
       ),
-    );
-  }
-}
-
-class _CollectionCard extends StatelessWidget {
-  final String title;
-
-  const _CollectionCard(this.title, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Center(child: Text(title)),
     );
   }
 }
