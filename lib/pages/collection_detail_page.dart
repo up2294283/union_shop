@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/models/product.dart';
+import 'package:union_shop/product_date.dart';
 import 'package:union_shop/widgets/custom_app_bar.dart';
 import 'package:union_shop/widgets/custom_footer.dart';
 import 'package:union_shop/widgets/product_card.dart';
@@ -10,6 +12,9 @@ class CollectionDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final collectionProducts =
+        products.where((p) => p.collection == collectionName).toList();
+
     return Scaffold(
       appBar: const CustomAppBar(),
       body: SingleChildScrollView(
@@ -33,12 +38,18 @@ class CollectionDetailPage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: DropdownButtonFormField<String>(
-                          decoration: const InputDecoration(labelText: 'Sort by'),
+                          decoration:
+                              const InputDecoration(labelText: 'Sort by'),
                           value: 'featured',
                           items: const [
-                            DropdownMenuItem(value: 'featured', child: Text('Featured')),
-                            DropdownMenuItem(value: 'price-asc', child: Text('Price: Low to High')),
-                            DropdownMenuItem(value: 'price-desc', child: Text('Price: High to Low')),
+                            DropdownMenuItem(
+                                value: 'featured', child: Text('Featured')),
+                            DropdownMenuItem(
+                                value: 'price-asc',
+                                child: Text('Price: Low to High')),
+                            DropdownMenuItem(
+                                value: 'price-desc',
+                                child: Text('Price: High to Low')),
                           ],
                           onChanged: (value) {
                             // This dropdown does not need to be functional for this task
@@ -54,29 +65,25 @@ class CollectionDetailPage extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 24),
-                  GridView.count(
+                  GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    crossAxisCount:
-                        MediaQuery.of(context).size.width > 600 ? 4 : 2,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                    childAspectRatio: 0.7,
-                    children: const [
-                      ProductCard(
-                        title: 'Classic University Hoodie',
-                        price: '£35.00',
-                        imageUrl:
-                            'https://shop.upsu.net/cdn/shop/products/UoP_Classic_Hoodie-1_360x.jpg?v=1614777893',
-                      ),
-                      ProductCard(
-                        title: 'Classic Sweatshirt',
-                        price: '£28.00',
-                        imageUrl:
-                            'https://shop.upsu.net/cdn/shop/products/UoP_Classic_Sweatshirt-1_360x.jpg?v=1614777921',
-                      ),
-                      // Add more hardcoded products for this collection
-                    ],
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount:
+                          MediaQuery.of(context).size.width > 600 ? 4 : 2,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                      childAspectRatio: 0.7,
+                    ),
+                    itemCount: collectionProducts.length,
+                    itemBuilder: (context, index) {
+                      final product = collectionProducts[index];
+                      return ProductCard(
+                        title: product.name,
+                        price: '£${product.price.toStringAsFixed(2)}',
+                        imageUrl: product.image,
+                      );
+                    },
                   ),
                 ],
               ),
