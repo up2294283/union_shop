@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/widgets/custom_app_bar.dart';
 import '../models/product.dart';
 import '../cart_service.dart';
 
@@ -17,7 +18,7 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.product.name)),
+      appBar: const CustomAppBar(),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [

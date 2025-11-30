@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/pages/collection_detail_page.dart';
-import 'package:union_shop/pages/collections_page.dart';
-import 'package:union_shop/pages/sale_page.dart';
-import 'package:union_shop/pages/about_us_page.dart';
-import 'package:union_shop/login_page.dart';
+import 'package:union_shop/widgets/custom_app_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -11,53 +8,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Union Shop')),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            const DrawerHeader(
-              child: Text("Union Shop", style: TextStyle(fontSize: 24)),
-            ),
-            ListTile(
-              title: const Text("Home"),
-              onTap: () => Navigator.pop(context),
-            ),
-            ListTile(
-              title: const Text("Collections"),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const CollectionsPage()));
-              },
-            ),
-            ListTile(
-              title: const Text("Sale"),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const SalePage()));
-              },
-            ),
-            ListTile(
-              title: const Text("About Us"),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const AboutUsPage()));
-              },
-            ),
-            ListTile(
-              title: const Text("Login"),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const LoginPage()));
-              },
-            ),
-          ],
-        ),
-      ),
+      appBar: const CustomAppBar(),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -121,3 +72,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+

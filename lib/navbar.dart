@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'about_page.dart';
+import 'pages/cart_page.dart';
 import 'sale_page.dart';
 import 'login_page.dart';
 import 'pages/collections_page.dart';
@@ -15,15 +16,29 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
       title: const Text("Union Shop"),
 
       // MOBILE → Hamburger menu
-      actions: isDesktop ? _buildDesktopLinks(context) : null,
+      actions: isDesktop
+          ? _buildDesktopLinks(context)
+          : [
+              IconButton(
+                icon: const Icon(Icons.shopping_cart),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const CartPage()),
+                  );
+                },
+              ),
+            ],
 
       automaticallyImplyLeading: !isDesktop,
 
       // drawer only on mobile
-      bottom: isDesktop ? null : PreferredSize(
-        preferredSize: const Size.fromHeight(0),
-        child: Container(),
-      ),
+      bottom: isDesktop
+          ? null
+          : PreferredSize(
+              preferredSize: const Size.fromHeight(0),
+              child: Container(),
+            ),
     );
   }
 
@@ -61,6 +76,13 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
               context, MaterialPageRoute(builder: (_) => const LoginPage()));
         },
         child: const Text("Login", style: TextStyle(color: Colors.white)),
+      ),
+      TextButton(
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (_) => const CartPage()));
+        },
+        child: const Text("Cart", style: TextStyle(color: Colors.white)),
       ),
     ];
   }

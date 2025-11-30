@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/widgets/custom_app_bar.dart';
 import '../product_data.dart';
 import 'product_page.dart';
 
@@ -9,7 +10,7 @@ class CollectionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final categories = products.map((p) => p.collection).toSet().toList();
     return Scaffold(
-      appBar: AppBar(title: const Text('Collections')),
+      appBar: const CustomAppBar(),
       body: ListView.builder(
         itemCount: categories.length,
         itemBuilder: (context, index) {
@@ -42,7 +43,7 @@ class CollectionPage extends StatelessWidget {
         .toList();
 
     return Scaffold(
-      appBar: AppBar(title: Text(collectionName)),
+      appBar: const CustomAppBar(),
       body: ListView.builder(
         itemCount: collectionProducts.length,
         itemBuilder: (context, index) {

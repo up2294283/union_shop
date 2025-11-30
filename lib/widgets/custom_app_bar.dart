@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/pages/cart_page.dart';
+import 'package:union_shop/pages/collections_page.dart';
+import 'package:union_shop/pages/sale_page.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
@@ -80,7 +83,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                               size: 18, color: Colors.grey),
                           padding: const EdgeInsets.all(8),
                           constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
-                          onPressed: placeholderCallbackForButtons,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => const CartPage()),
+                            );
+                          },
                         ),
                         IconButton(
                           icon: const Icon(Icons.menu,
@@ -106,9 +114,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 _NavBarItem(text: 'HOME', onTap: () => navigateToHome(context)),
-                _NavBarItem(text: 'COLLECTIONS', onTap: () => Navigator.pushNamed(context, '/collections')),
+                _NavBarItem(text: 'COLLECTIONS', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CollectionsPage()))),
                 _NavBarItem(text: 'GIFTS', onTap: placeholderCallbackForButtons),
-                _NavBarItem(text: 'SALE', onTap: () => Navigator.pushNamed(context, '/sale')),
+                _NavBarItem(text: 'SALE', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const SalePage()))),
               ],
             ),
           ),
