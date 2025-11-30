@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/models/product.dart';
+import 'package:union_shop/pages/product_page.dart';
 
 class ProductCard extends StatelessWidget {
-  final String title;
-  final String price;
-  final String? oldPrice; // Make oldPrice optional
-  final String imageUrl;
+  final Product product;
 
   const ProductCard({
     super.key,
-    required this.title,
-    required this.price,
-    this.oldPrice,
-    required this.imageUrl,
+    required this.product,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/product');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => ProductPage(product: product),
+          ),
+        );
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Image.asset(
-              imageUrl,
+              product.image,
               fit: BoxFit.cover,
               width: double.infinity,
               errorBuilder: (context, error, stackTrace) {
@@ -38,37 +39,24 @@ class ProductCard extends StatelessWidget {
               },
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 4),
-              Text(
-                title,
-                style: const TextStyle(fontSize: 14, color: Colors.black),
-                maxLines: 2,
-              ),
-              const SizedBox(height: 4),
-              Text(
-                title,
-                style: const TextStyle(fontSize: 14, color: Colors.black),
-                maxLines: 2,
-              ),
-              const SizedBox(height: 4),
-              Row(
-                children: [
-                  Text(
-                    price,
-                    style: TextStyle(fontSize: 13, color: oldPrice != null ? Colors.red : Colors.grey),
-                  ),
-                  if (oldPrice != null) const SizedBox(width: 8),
-                  if (oldPrice != null)
-                    Text(
-                      oldPrice!,
-                      style: const TextStyle(fontSize: 13, color: Colors.grey, decoration: TextDecoration.lineThrough),
-                    ),
-                ],
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  product.name,
+                  style: const TextStyle(fontSize: 14, color: Colors.black),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  '£${product.price.toStringAsFixed(2)}',
+                  style: const TextStyle(fontSize: 13, color: Colors.grey),
+                ),
+              ],
+            ),
           ),
         ],
       ),

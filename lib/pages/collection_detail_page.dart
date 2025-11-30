@@ -79,9 +79,7 @@ class CollectionDetailPage extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final product = collectionProducts[index];
                       return ProductCard(
-                        title: product.name,
-                        price: '£${product.price.toStringAsFixed(2)}',
-                        imageUrl: product.image,
+                        product: product,
                       );
                     },
                   ),
