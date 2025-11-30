@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/product_data.dart';
 import 'package:union_shop/widgets/custom_app_bar.dart';
 import 'package:union_shop/widgets/product_card.dart';
+import 'package:union_shop/models/product.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
