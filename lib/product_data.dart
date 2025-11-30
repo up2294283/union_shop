@@ -8,6 +8,8 @@ const products = <Product>[
     image: 'assets/images/hoodie.jpg',
     price: 39.99,
     collection: 'Clothing',
+    colors: ['Black', 'Grey', 'Purple'],
+    sizes: ['S', 'M', 'L'],
   ),
   Product(
     id: 'p2',
@@ -24,6 +26,8 @@ const products = <Product>[
     image: 'assets/images/T_shirt.jpg',
     price: 19.99,
     collection: 'Clothing',
+    colors: ['White', 'Black', 'Blue'],
+    sizes: ['S', 'M', 'L'],
   ),
   Product(
     id: 'p4',
@@ -115,6 +119,8 @@ const products = <Product>[
     image: 'assets/images/BiscuitSweatshirt.webp',
     price: 29.99,
     collection: 'Sweatshirts',
+    colors: ['Biscuit'],
+    sizes: ['S', 'M', 'L'],
   ),
   Product(
     id: 'p15',
@@ -123,6 +129,8 @@ const products = <Product>[
     image: 'assets/images/CaramelSweatshirt.webp',
     price: 29.99,
     collection: 'Sweatshirts',
+    colors: ['Caramel'],
+    sizes: ['S', 'M', 'L'],
   ),
   Product(
     id: 'p16',
@@ -131,6 +139,8 @@ const products = <Product>[
     image: 'assets/images/VanillaSweatshirt.webp',
     price: 29.99,
     collection: 'Sweatshirts',
+    colors: ['Vanilla'],
+    sizes: ['S', 'M', 'L'],
   ),
   // Graduation
   Product(
@@ -140,6 +150,7 @@ const products = <Product>[
     image: 'assets/images/GradGrey.avif',
     price: 45.99,
     collection: 'Graduation',
+    sizes: ['S', 'M', 'L'],
   ),
   Product(
     id: 'p18',
@@ -148,5 +159,6 @@ const products = <Product>[
     image: 'assets/images/GradPurple.webp',
     price: 45.99,
     collection: 'Graduation',
+    sizes: ['S', 'M', 'L'],
   ),
 ];

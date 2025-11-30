@@ -115,7 +115,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               children: [
                 _NavBarItem(text: 'HOME', onTap: () => navigateToHome(context)),
                 _NavBarItem(text: 'COLLECTIONS', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CollectionsPage()))),
-                _NavBarItem(text: 'GIFTS', onTap: placeholderCallbackForButtons),
                 _NavBarItem(text: 'SALE', onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const SalePage()))),
               ],
             ),
