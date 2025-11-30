@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/pages/cart_page.dart';
 import 'package:union_shop/pages/collections_page.dart';
 import 'package:union_shop/pages/sale_page.dart';
+import 'package:union_shop/pages/profile_page.dart';
+import 'package:union_shop/pages/search_page.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
@@ -9,10 +11,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   void navigateToHome(BuildContext context) {
     // Use pushNamedAndRemoveUntil to clear the navigation stack
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-  }
-
-  void placeholderCallbackForButtons() {
-    // This is the event handler for buttons that don't work yet
   }
 
   @override
@@ -69,14 +67,24 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                               size: 18, color: Colors.grey),
                           padding: const EdgeInsets.all(8),
                           constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
-                          onPressed: placeholderCallbackForButtons,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => const SearchPage()),
+                            );
+                          },
                         ),
                         IconButton(
                           icon: const Icon(Icons.person_outline,
                               size: 18, color: Colors.grey),
                           padding: const EdgeInsets.all(8),
                           constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
-                          onPressed: placeholderCallbackForButtons,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => const ProfilePage()),
+                            );
+                          },
                         ),
                         IconButton(
                           icon: const Icon(Icons.shopping_bag_outlined,
@@ -95,7 +103,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                               size: 18, color: Colors.grey),
                           padding: const EdgeInsets.all(8),
                           constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
-                          onPressed: placeholderCallbackForButtons,
+                          onPressed: () {},
                         ),
                       ],
                     ),
