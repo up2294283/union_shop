@@ -5,7 +5,9 @@ import 'package:union_shop/pages/sale_page.dart';
 import 'package:union_shop/pages/profile_page.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key});
+  const CustomAppBar({super.key, this.onSearchQueryChanged});
+
+  final ValueChanged<String>? onSearchQueryChanged;
 
   @override
   State<CustomAppBar> createState() => _CustomAppBarState();
@@ -16,6 +18,24 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 
 class _CustomAppBarState extends State<CustomAppBar> {
   bool _isSearching = false;
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(_onSearchChanged);
+  }
+
+  @override
+  void dispose() {
+    _searchController.removeListener(_onSearchChanged);
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _onSearchChanged() {
+    widget.onSearchQueryChanged?.call(_searchController.text);
+  }
 
   void navigateToHome(BuildContext context) {
     // Use pushNamedAndRemoveUntil to clear the navigation stack
@@ -52,6 +72,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       onPressed: () {
                         setState(() {
                           _isSearching = false;
+                          _searchController.clear();
                         });
                       },
                     )
@@ -80,13 +101,14 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: TextField(
+                          controller: _searchController,
                           decoration: InputDecoration(
                             hintText: 'Search...',
                             border: InputBorder.none,
                             suffixIcon: IconButton(
                               icon: const Icon(Icons.clear, size: 18, color: Colors.grey),
                               onPressed: () {
-                                // Clear search text
+                                _searchController.clear();
                               },
                             ),
                           ),
